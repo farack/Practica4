@@ -1,0 +1,105 @@
+using System;
+using System.Collections;
+namespace tareaa
+{
+	public class Program
+	{
+		public class Persona{
+				public double codigo;
+				public string nombre;
+				public double telefono;			
+			}
+		public static void Main(string[] args)
+		{			
+			Persona datos=new Persona();
+			Hashtable tabla =new Hashtable();
+		for(int i=0;i<4;i++)
+			{
+				Persona p= new Persona();
+				Console.WriteLine("Ingrese los siguientes datos: ");
+                Console.WriteLine ("Codigo");
+				p.codigo = double.Parse (Console.ReadLine());
+				Console.WriteLine ("Nombre");
+				p.nombre = Console.ReadLine ();
+				Console.WriteLine("Telefono");
+				p.telefono = double.Parse(Console.ReadLine ());
+				tabla.Add(p.codigo,p);
+				Console.Clear ();
+			}
+
+			
+			Console.Clear();
+        Editar:
+				Console.WriteLine("Ingrese el codigo a Editar");
+				double codigo1 = double.Parse(Console.ReadLine ());
+				if(tabla.ContainsKey(codigo1)==true)
+				{	
+					Persona Edit = (Persona)(tabla[codigo1]); 
+					Console.WriteLine ("Nuevos datos");
+					Console.WriteLine ("\nNombre: ");
+					Edit.nombre= Console.ReadLine ();
+					Console.WriteLine("Telefono");
+					Edit.telefono= double.Parse(Console.ReadLine());	
+				}
+				else
+				{
+					Console.WriteLine("El codigo no existe");
+				}
+				System.Threading.Thread.Sleep(1000);	
+				Console.Clear();
+
+				Console.WriteLine("\nEditar otro?\n1) SI\n2) NO");
+				int edi=int.Parse(Console.ReadLine());
+				if(edi==1){
+					goto Editar;
+				
+			}
+
+         Console.Clear();
+		Eliminar:
+				Console.WriteLine("Ingrese el codigo a ELIMINAR");
+				double codigo= double.Parse(Console.ReadLine());
+				if (tabla.ContainsKey(codigo)==true)
+				{	
+					Console.WriteLine("Seguro de que quiere ELIMINAR");
+					Console.WriteLine("1) SI\n2) NO");
+					int op=int.Parse(Console.ReadLine());
+					if(op==1)
+					{
+						tabla.Remove(codigo);
+					}
+					else
+					{
+						Console.WriteLine("No se elimino");
+					}	
+				}
+				else
+				{
+					Console.WriteLine("El codigo no existe ");
+				}
+					System.Threading.Thread.Sleep(1000);	
+				Console.Clear();
+				Console.WriteLine("\nEliminar otro?\n1) SI\n2) NO");
+				int opcE=int.Parse(Console.ReadLine());
+				if(opcE==1){
+					goto Eliminar;
+				}
+				
+			
+
+		IDictionaryEnumerator mos = tabla.GetEnumerator();
+			while(mos.MoveNext())
+			{
+				Persona mus = new Persona();
+				mus = (Persona)(tabla[mos.Key]);
+				Console.WriteLine("Codigo: "+ mus.codigo);
+				Console.WriteLine ("Nombre: "+ mus.nombre);
+				Console.WriteLine ("Telefono: "+ mus.telefono+"\n");
+			}
+			Console.Write("Press any key to continue . . . ");
+                Console.ReadKey(true);
+
+
+		}
+	}}
+
